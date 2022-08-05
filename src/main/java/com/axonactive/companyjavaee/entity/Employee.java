@@ -24,12 +24,28 @@ public class Employee {
     @Size(max = 9)
 
     private String employeeId;
+
     private LocalDate dateOfBirth;
+
+    @Column(length = 20)
+    @Size(max = 20)
     private String firstName;
+
+    @Column(length = 10)
+    @Size(max = 10)
     private String gender;
+
+    @Column(length = 20)
+    @Size(max = 20)
     private String lastName;
+
+    @Column(length = 20)
+    @Size(max = 20)
     private String middleName;
     private Integer salary;
+
+    @ManyToOne
+    @JoinColumn(name = "dept_id")
     private Department department;
 
 }

@@ -1,4 +1,4 @@
-INSERT INTO department (department_name,start_date)
+INSERT INTO department (departmentname,startdate)
 VALUES
   ('Administration','2022-09-14'),
   ('Marketing','2021-03-12'),
@@ -12,7 +12,7 @@ VALUES
   ('Finance','2022-04-02'),
   ('Accounting','2022-09-10');
 
-INSERT INTO departmentlocation (location,deptid)
+INSERT INTO departmentlocation (location,dept_id)
 VALUES
   ('Peresvet',6),
   ('Sarre',2),
@@ -46,7 +46,7 @@ VALUES
   ('Guarulhos',6);
 
 
-INSERT INTO employee (employeeid,date_of_birth,first_name,gender,last_name,middle_name,salary,deptid)
+INSERT INTO employee (employee_id,dateofbirth,firstname,gender,lastname,middlename,salary,dept_id)
 VALUES
   ('1','2000-03-07','Marshall','Female','Macon','Bert',1110,9),
   ('2','2006-08-25','Clayton','Female','Acton','Merrill',905,2),
@@ -79,7 +79,7 @@ VALUES
   ('29','2001-03-07','Langley','Female','Demetrius','Timon',2398,6),
   ('30','2009-09-20','Jordan','Female','Evan','Jaime',2332,10);
 
-INSERT INTO relatives (id,fullName,gender,phoneNumber,relationship,employeeid)
+INSERT INTO relatives (id,fullname,gender,phonenumber,relationship,employee_id)
 VALUES
   (1,'Keane Whitehead',0,'0939178722','Sister','1'),
   (2,'Colton Donaldson',0,'0941066687','Uncle','2'),
@@ -112,7 +112,7 @@ VALUES
   (29,'Kane Bright',0,'0923833598','Aunt','29'),
   (30,'Jesse Morales',1,'0980591112','Father','30');
 
-INSERT INTO project (area,project_name,managed_department)
+INSERT INTO project (area,projectname,managed_department)
 VALUES
   ('Annapolis County','Proair HFA',3),
   ('Poltava','TriNessa',10),
@@ -144,9 +144,9 @@ VALUES
   ('Cheongju','Tricor',6),
   ('Simpang','Sulfamethoxazole/Trimethoprim',2),
   ('Khmilnyk','Amitriptyline HCl',8);
-  
 
-  insert into assignment (number_of_hour, employeeid, projectid)
+
+  insert into assignment (numberofhour, employee_empid, project_projectid)
   values
   (80,'1',1),
   (90,'2',2),
