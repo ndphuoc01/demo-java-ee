@@ -20,7 +20,7 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer departmentId;
 
-    @Column(length = 200)
+    @Column(length = 200,unique = true)
     @Size(max = 200)
     private String departmentName;
 
