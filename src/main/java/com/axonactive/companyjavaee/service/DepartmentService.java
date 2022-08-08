@@ -29,4 +29,8 @@ public class DepartmentService {
     public DepartmentDto save(DepartmentRequest departmentRequest) {
         return departmentMapper.toDto(departmentDAO.save(departmentRequest));
     }
+
+//    public DepartmentDto update(Integer id, DepartmentRequest request){
+//        return departmentMapper.toDto(departmentDAO.update();)
+//    }
 }
