@@ -2,7 +2,6 @@ package com.axonactive.companyjavaee.service.dao;
 
 import com.axonactive.companyjavaee.entity.Department;
 import com.axonactive.companyjavaee.rest.request.DepartmentRequest;
-import com.axonactive.companyjavaee.service.dto.DepartmentDto;
 
 import javax.ejb.Stateless;
 import java.util.List;
@@ -13,7 +12,7 @@ public interface DepartmentDAO {
 
     Department save(DepartmentRequest departmentRequest);
 
-    void update(Department department);
+    Department update(Integer id, DepartmentRequest departmentRequest);
 
     void flush();
 

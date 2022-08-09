@@ -5,6 +5,7 @@ import com.axonactive.companyjavaee.service.dao.DepartmentDAO;
 import com.axonactive.companyjavaee.service.dto.DepartmentDto;
 import com.axonactive.companyjavaee.service.mapper.DepartmentMapper;
 
+import javax.ejb.DependsOn;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.io.DataOutput;
@@ -30,7 +31,11 @@ public class DepartmentService {
         return departmentMapper.toDto(departmentDAO.save(departmentRequest));
     }
 
-//    public DepartmentDto update(Integer id, DepartmentRequest request){
-//        return departmentMapper.toDto(departmentDAO.update();)
-//    }
+    public void delete(Integer id) {
+        departmentDAO.remove(id);
+    }
+
+    public DepartmentDto update(Integer id, DepartmentRequest request) {
+        return departmentMapper.toDto(departmentDAO.update(id, request));
+    }
 }

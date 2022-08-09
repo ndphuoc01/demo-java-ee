@@ -1,6 +1,7 @@
 package com.axonactive.companyjavaee.service;
 
 import com.axonactive.companyjavaee.entity.Department;
+import com.axonactive.companyjavaee.rest.request.DepartmentRequest;
 import com.axonactive.companyjavaee.service.dao.DepartmentDAO;
 import com.axonactive.companyjavaee.service.dto.DepartmentDto;
 import com.axonactive.companyjavaee.service.mapper.DepartmentMapper;
@@ -14,6 +15,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.ejb.EJB;
+import javax.ejb.Local;
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
 import java.time.LocalDate;
@@ -21,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class DepartmentServiceTest {
@@ -45,7 +47,6 @@ class DepartmentServiceTest {
     void setUp() {
         departments.add(department1);
         departments.add(department2);
-
     }
 
 
@@ -77,5 +78,45 @@ class DepartmentServiceTest {
         assertThrows(NoResultException.class, () -> {
             departmentService.findById(100);
         });
+    }
+
+    @Test
+    void testSave_sizeShouldIncrease_whenSaveNewRequest() {
+        Department department3 = new Department();
+        department3.setDepartmentName("MKT");
+        department3.setStartDate(LocalDate.of(2022, 1, 1));
+        DepartmentRequest departmentRequest = new DepartmentRequest("MKT", LocalDate.of(2022, 1, 1));
+        DepartmentDto departmentDto3 = new DepartmentDto(3, "MKT", LocalDate.of(2022, 1, 1));
+
+        when(departmentDAO.save(departmentRequest)).thenReturn(department3);
+        when(departmentMapper.toDto(department3)).thenReturn(departmentDto3);
+
+        DepartmentDto expectedDepartment = departmentService.save(departmentRequest);
+
+        assertEquals(departmentDto3.getDepartmentId(), expectedDepartment.getDepartmentId());
+    }
+
+
+    @Test
+    void testDelete_shouldExecuteOneTime_whenDeleteExisted() {
+        Department toBeDeleteDepartment = new Department(123, "NoNo", LocalDate.of(2022, 4, 4));
+        lenient().when(departmentDAO.findById(123)).thenReturn(toBeDeleteDepartment);
+        departmentService.delete(123);
+        verify(departmentDAO, times(1)).remove(123);
+    }
+
+    @Test
+    void testUpdate_shouldReturnNewName_whenUpdateExistedOne() {
+
+        DepartmentRequest updateRequest = new DepartmentRequest("Sale", LocalDate.of(2020, 1, 1));
+        DepartmentDto expectUpdateDepartment = new DepartmentDto(1, "Sale", LocalDate.of(2020, 1, 1));
+
+        when(departmentDAO.update(1, updateRequest)).thenReturn(department1);
+        when(departmentMapper.toDto(department1)).thenReturn(expectUpdateDepartment);
+
+        DepartmentDto actualUpdatedDepartment = departmentService.update(1, updateRequest);
+
+        assertEquals(actualUpdatedDepartment.getDepartmentName(), expectUpdateDepartment.getDepartmentName());
+        assertEquals(actualUpdatedDepartment.getStartDate(), expectUpdateDepartment.getStartDate());
     }
 }
