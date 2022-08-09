@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.*;
 import java.util.List;
+import java.util.Optional;
 
 @Stateless
 public class DepartmentDAOImpl implements DepartmentDAO {
@@ -63,13 +64,13 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 
     @Override
     public Department findById(Integer deptId) {
-        List<Department> findByIdQuery = em.createQuery(
+        return em.createQuery(
                         "SELECT d FROM Department d " +
                                 "WHERE d.departmentId = :deptid", Department.class)
-                .setParameter("deptid", deptId).getResultList();
-        if (findByIdQuery.isEmpty())
-            throw new NoResultException("No department found");
-        else return findByIdQuery.get(0);
+                .setParameter("deptid", deptId).getSingleResult();
+//        if (findByIdQuery.isEmpty())
+//            throw new NoResultException("No department found");
+//        else  findByIdQuery.get();
 
     }
 

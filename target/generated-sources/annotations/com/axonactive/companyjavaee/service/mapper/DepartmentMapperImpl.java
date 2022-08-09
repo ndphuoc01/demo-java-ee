@@ -4,12 +4,12 @@ import com.axonactive.companyjavaee.entity.Department;
 import com.axonactive.companyjavaee.service.dto.DepartmentDto;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 import javax.enterprise.context.ApplicationScoped;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-08-09T14:02:02+0700",
+    date = "2022-08-09T17:50:52+0700",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 17.0.3 (Eclipse Adoptium)"
 )
 @ApplicationScoped

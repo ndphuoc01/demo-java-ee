@@ -5,24 +5,20 @@ import com.axonactive.companyjavaee.rest.request.DepartmentRequest;
 import com.axonactive.companyjavaee.service.dao.DepartmentDAO;
 import com.axonactive.companyjavaee.service.dto.DepartmentDto;
 import com.axonactive.companyjavaee.service.mapper.DepartmentMapper;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.ejb.EJB;
-import javax.ejb.Local;
-import javax.inject.Inject;
 import javax.persistence.NoResultException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -58,6 +54,7 @@ class DepartmentServiceTest {
 
         when(departmentDAO.findAll()).thenReturn(departments);
         when(departmentMapper.toDtos(departments)).thenReturn(expectedDepartmentList);
+
         List<DepartmentDto> actualDepartments = departmentService.getAll();
 
         assertEquals(expectedDepartmentList.size(), actualDepartments.size());

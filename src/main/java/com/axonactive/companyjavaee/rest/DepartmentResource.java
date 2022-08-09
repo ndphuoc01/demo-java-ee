@@ -23,7 +23,7 @@ import java.util.List;
 public class DepartmentResource {
 
     public static final String PATH = "departments";
-    @EJB
+    @Inject
     DepartmentService departmentService;
 
     @Context
@@ -45,8 +45,9 @@ public class DepartmentResource {
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_JSON})
-    public Response addDepartment(DepartmentRequest departmentRequest) {
+    public Response addDepartment( DepartmentRequest departmentRequest) {
         DepartmentDto createdDept = departmentService.save(departmentRequest);
+        System.out.println(Response.created(appendCurrentUriWith(createdDept.getDepartmentId().toString())).build());
         return Response.ok().entity(createdDept).status(Response.Status.CREATED).build();
     }
 
@@ -61,6 +62,7 @@ public class DepartmentResource {
     @Path("{DepartmentId}")
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_JSON})
+
     public Response updateDepartment(@PathParam("DepartmentId") Integer departmentId, DepartmentRequest departmentRequest) {
         DepartmentDto updatedDepartment = departmentService.update(departmentId, departmentRequest);
         return Response.ok().entity(updatedDepartment).build();
