@@ -30,7 +30,7 @@ class DepartmentServiceTest {
     private DepartmentDAO departmentDAO;
 
     @Mock
-    DepartmentMapper departmentMapper;
+    private DepartmentMapper departmentMapper;
 
     List<Department> departments = new ArrayList<>();
     Department department1 = new Department(1, "Admin", LocalDate.of(2022, 8, 8));
