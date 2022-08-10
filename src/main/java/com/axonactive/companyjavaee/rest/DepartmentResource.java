@@ -26,6 +26,9 @@ public class DepartmentResource {
     @Inject
     DepartmentService departmentService;
 
+    @Context
+    private UriInfo uriInfo;
+
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public Response getAll() {
