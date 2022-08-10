@@ -10,7 +10,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Data
 public class DepartmentDto {
-
     private Integer departmentId;
     private String departmentName;
     private LocalDate startDate;

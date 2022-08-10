@@ -9,8 +9,8 @@ import javax.enterprise.context.ApplicationScoped;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-08-09T17:50:52+0700",
-    comments = "version: 1.5.2.Final, compiler: javac, environment: Java 17.0.3 (Eclipse Adoptium)"
+    date = "2022-08-10T10:50:34+0700",
+    comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.14.1 (Eclipse Adoptium)"
 )
 @ApplicationScoped
 public class DepartmentMapperImpl implements DepartmentMapper {
